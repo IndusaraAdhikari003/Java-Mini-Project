@@ -44,4 +44,4 @@ The system allows administrators, lecturers, and students to manage academic act
 
 ---
 
-## 📂 Project Structure
+
