@@ -445,7 +445,7 @@ UNION ALL SELECT 'medicals',           COUNT(*) FROM medicals;
 --===========================================================================
 
 
--- after run this when after above code      ============================================================
+-- after ============================================================
 
 
 USE lms_db;
@@ -458,3 +458,20 @@ DEFAULT 'PENDING' AFTER is_approved;
 -- Update existing data
 UPDATE medicals SET status = 'APPROVED' WHERE is_approved = 1;
 UPDATE medicals SET status = 'PENDING'  WHERE is_approved = 0;
+
+
+
+
+================================================================================================
+====================after add this =============================================================
+
+CREATE TABLE course_materials (
+    material_id   INT AUTO_INCREMENT PRIMARY KEY,
+    course_id     INT NOT NULL,
+    title         VARCHAR(200) NOT NULL,
+    file_path     VARCHAR(255) NOT NULL,
+    uploaded_by   INT,
+    uploaded_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE,
+    FOREIGN KEY (uploaded_by) REFERENCES users(user_id) ON DELETE SET NULL
+);
