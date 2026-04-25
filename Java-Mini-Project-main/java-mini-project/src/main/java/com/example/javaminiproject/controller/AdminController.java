@@ -5,12 +5,11 @@ import com.example.javaminiproject.dao.*;
 import com.example.javaminiproject.model.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.text.*;
+
 import java.util.List;
 import javafx.scene.control.TextInputControl;
 
@@ -29,8 +28,6 @@ public class AdminController {
     private final CourseDAO     courseDAO     = new CourseDAO();
     private final NoticeDAO     noticeDAO     = new NoticeDAO();
     private final TimetableDAO  timetableDAO  = new TimetableDAO();
-    private final AttendanceDAO attendanceDAO = new AttendanceDAO();
-    private final MarksDAO      marksDAO      = new MarksDAO();
 
     public void setUser(User user) { this.user = user; }
 
@@ -793,64 +790,6 @@ public class AdminController {
     }
 
 
-    private void showAddTimetableDialog(TableView<Timetable> table) {
-        Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.setTitle("Add Timetable Entry");
-        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-
-        GridPane grid = new GridPane();
-        grid.setHgap(12); grid.setVgap(10);
-        grid.setPadding(new Insets(20));
-
-        // Course picker
-        ComboBox<Course> cbCourse = new ComboBox<>();
-        try { cbCourse.setItems(FXCollections.observableArrayList(courseDAO.getAllCourses())); }
-        catch (Exception ignored) {}
-
-        ComboBox<String> cbDay  = new ComboBox<>(
-                FXCollections.observableArrayList("MON","TUE","WED","THU","FRI","SAT"));
-        ComboBox<String> cbType = new ComboBox<>(
-                FXCollections.observableArrayList("THEORY","PRACTICAL"));
-
-        // Time fields — format HH:MM
-        TextField fStart    = new TextField(); fStart.setPromptText("e.g. 08:00");
-        TextField fEnd      = new TextField(); fEnd.setPromptText("e.g. 10:00");
-        TextField fLocation = new TextField(); fLocation.setPromptText("e.g. Lab A / LT-01");
-
-        cbDay.setValue("MON");
-        cbType.setValue("THEORY");
-
-        grid.addRow(0, new Label("Course:"),   cbCourse);
-        grid.addRow(1, new Label("Day:"),      cbDay);
-        grid.addRow(2, new Label("Type:"),     cbType);
-        grid.addRow(3, new Label("Start (HH:MM):"), fStart);
-        grid.addRow(4, new Label("End   (HH:MM):"), fEnd);
-        grid.addRow(5, new Label("Location:"), fLocation);
-
-        dialog.getDialogPane().setContent(grid);
-
-        dialog.showAndWait().ifPresent(btn -> {
-            if (btn != ButtonType.OK) return;
-            try {
-                if (cbCourse.getValue() == null) { showError("Please select a course."); return; }
-                java.time.LocalTime start = java.time.LocalTime.parse(fStart.getText().trim());
-                java.time.LocalTime end   = java.time.LocalTime.parse(fEnd.getText().trim());
-                if (!end.isAfter(start)) { showError("End time must be after start time."); return; }
-
-                Timetable tt = new Timetable(
-                        0, cbCourse.getValue().getCourseId(),
-                        cbDay.getValue(), start, end,
-                        fLocation.getText().trim(), cbType.getValue());
-                timetableDAO.addTimetable(tt);
-                loadTimetable(table);
-            } catch (java.time.format.DateTimeParseException ex) {
-                showError("Invalid time format. Use HH:MM (e.g. 08:30).");
-            } catch (Exception ex) {
-                showError(ex.getMessage());
-            }
-        });
-    }
-
     // ── LOGOUT ─────────────────────────────────────────────
     @FXML
     public void handleLogout() {
@@ -920,9 +859,6 @@ public class AdminController {
         return phone != null && phone.matches("\\d{10}");
     }
 
-    private boolean isNumeric(String value) {
-        return value != null && value.matches("\\d+");
-    }
     private boolean isEmpty(TextInputControl field, String fieldName) {
         if (field.getText() == null || field.getText().trim().isEmpty()) {
             showError(fieldName + " cannot be empty.");
