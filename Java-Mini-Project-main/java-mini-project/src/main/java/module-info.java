@@ -4,6 +4,7 @@ module com.example.javaminiproject {
     requires java.sql;
     requires mysql.connector.j;
     requires org.controlsfx.controls;
+    requires java.desktop;
 
     opens com.example.javaminiproject to javafx.fxml;
     opens com.example.javaminiproject.controller to javafx.fxml;
