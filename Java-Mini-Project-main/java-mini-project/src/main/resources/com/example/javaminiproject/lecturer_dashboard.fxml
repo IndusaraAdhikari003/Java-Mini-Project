@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.javaminiproject.controller.LecturerController"
+      prefWidth="1100" prefHeight="700">
+
+    <VBox styleClass="sidebar" spacing="2">
+        <padding><Insets top="24" bottom="16"/></padding>
+
+        <Label text="🎓 LMS"
+               style="-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:white;-fx-padding:0 20 12 20;"/>
+        <Separator style="-fx-background-color:#334;"/>
+
+        <Label text="LECTURER" styleClass="sidebar-title"/>
+
+        <Button text="📊  Dashboard"
+                styleClass="sidebar-btn" onAction="#showDashboard"/>
+        <Button text="👥  Student Details"
+                styleClass="sidebar-btn" onAction="#showStudentDetails"/>
+        <Button text="📝  Upload Marks"
+                styleClass="sidebar-btn" onAction="#showUploadMarks"/>
+        <Button text="📚  Course Materials"
+                styleClass="sidebar-btn" onAction="#showCourseMaterials"/>
+        <Button text="📋  Attendance View"
+                styleClass="sidebar-btn" onAction="#showAttendanceView"/>
+        <Button text="✅  Eligibility"
+                styleClass="sidebar-btn" onAction="#showEligibility"/>
+        <Button text="🎓  Grades and GPA"
+                styleClass="sidebar-btn" onAction="#showGrades"/>
+        <Button text="🏥  Medical Records"
+                styleClass="sidebar-btn" onAction="#showMedicalRecords"/>
+        <Button text="📢  Notices"
+                styleClass="sidebar-btn" onAction="#showNotices"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+        <Separator style="-fx-background-color:#334;"/>
+
+        <VBox spacing="2">
+            <padding><Insets top="16" right="20" bottom="0" left="20"/></padding>
+            <Label fx:id="labelUserName" styleClass="sidebar-user"/>
+            <Label text="Lecturer" styleClass="sidebar-role"/>
+        </VBox>
+
+        <Button text="Logout" styleClass="btn-logout" onAction="#handleLogout">
+            <VBox.margin>
+                <Insets top="8" right="10" bottom="8" left="10"/>
+            </VBox.margin>
+        </Button>
+    </VBox>
+
+    <StackPane HBox.hgrow="ALWAYS" styleClass="content-area">
+        <ScrollPane fitToWidth="true"
+                    style="-fx-background-color:transparent;-fx-background:transparent;">
+            <VBox fx:id="contentPane" spacing="20">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+            </VBox>
+        </ScrollPane>
+    </StackPane>
+
+</HBox>
