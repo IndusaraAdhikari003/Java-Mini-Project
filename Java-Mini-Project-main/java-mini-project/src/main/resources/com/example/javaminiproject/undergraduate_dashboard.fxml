@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.javaminiproject.controller.UndergraduateController"
+      prefWidth="1100" prefHeight="700">
+
+    <!-- SIDEBAR -->
+    <VBox styleClass="sidebar" spacing="2">
+        <padding><Insets top="24" bottom="16"/></padding>
+
+        <Label text="🎓 Student Portal"
+               style="-fx-font-size:15;-fx-font-weight:bold;-fx-text-fill:white;-fx-padding:0 20 12 20;"/>
+        <Separator style="-fx-background-color:#334;"/>
+
+        <Label text="MY PORTAL" styleClass="sidebar-title"/>
+        <Button text="🏠  Dashboard"      styleClass="sidebar-btn" onAction="#showDashboard"/>
+        <Button text="📚  Course Materials" styleClass="sidebar-btn" onAction="#showCourseMaterials"/>
+        <Button text="📋  Attendance"     styleClass="sidebar-btn" onAction="#showAttendance"/>
+        <Button text="📝  Marks and GPA"  styleClass="sidebar-btn" onAction="#showMarks"/>
+        <Button text="🏥  My Medicals"    styleClass="sidebar-btn" onAction="#showMedicals"/>
+        <Button text="📤  Submit Medical"  styleClass="sidebar-btn" onAction="#showSubmitMedical"/>
+        <Button text="📢  Notices"        styleClass="sidebar-btn" onAction="#showNotices"/>
+        <Button text="🗓  Timetable"      styleClass="sidebar-btn" onAction="#showTimetable"/>
+        <Button text="✏  Update Profile"  styleClass="sidebar-btn" onAction="#showUpdateProfile"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+        <Separator style="-fx-background-color:#334;"/>
+
+        <VBox spacing="2">
+            <padding><Insets top="16" right="20" bottom="0" left="20"/></padding>
+            <Label fx:id="labelUserName" styleClass="sidebar-user"/>
+            <Label fx:id="labelReg"      styleClass="sidebar-role"/>
+        </VBox>
+
+        <Button text="Logout" styleClass="btn-logout" onAction="#handleLogout">
+            <VBox.margin><Insets top="8" right="10" bottom="8" left="10"/></VBox.margin>
+        </Button>
+    </VBox>
+
+    <!-- MAIN CONTENT -->
+    <StackPane HBox.hgrow="ALWAYS" styleClass="content-area">
+        <ScrollPane fitToWidth="true"
+                    style="-fx-background-color:transparent;-fx-background:transparent;">
+            <VBox fx:id="contentPane" spacing="20">
+                <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            </VBox>
+        </ScrollPane>
+    </StackPane>
+
+</HBox>
