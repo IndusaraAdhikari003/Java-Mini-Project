@@ -6,7 +6,6 @@ public class CourseMaterial {
     private String title;
     private String filePath;
     private int uploadedBy;
-    private String courseName;
 
     public CourseMaterial(int materialId, int courseId, String title, String filePath, int uploadedBy) {
         this.materialId = materialId;
@@ -36,12 +35,7 @@ public class CourseMaterial {
         return uploadedBy;
     }
 
-    public String getCourseName() {
-        return courseName;
-    }
-
     public void setCourseName(String courseName) {
-        this.courseName = courseName;
     }
 
     @Override

@@ -35,11 +35,6 @@ public class Course {
     public int     getLecturerId()  { return lecturerId; }
     public String  getLecturerName(){ return lecturerName; }
 
-    public void setCourseCode(String c)  { this.courseCode  = c; }
-    public void setCourseName(String n)  { this.courseName  = n; }
-    public void setCredits(int cr)       { this.credits     = cr; }
-    public void setLecturerId(int id)    { this.lecturerId  = id; }
-
     @Override
     public String toString() { return courseCode + " - " + courseName; }
 }

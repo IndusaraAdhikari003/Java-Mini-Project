@@ -56,9 +56,4 @@ public class GradeCalculator {
         return totalCredits == 0 ? 0.0 : totalPoints / totalCredits;
     }
 
-    // Attendance percentage
-    public static double calculateAttendancePercent(int present, int total) {
-        if (total == 0) return 0.0;
-        return (double) present / total * 100.0;
-    }
 }
