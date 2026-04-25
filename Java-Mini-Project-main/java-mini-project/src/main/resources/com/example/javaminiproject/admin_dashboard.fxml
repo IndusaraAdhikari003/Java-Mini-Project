@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.javaminiproject.controller.AdminController"
+      prefWidth="1100" prefHeight="700">
+
+    <!-- SIDEBAR -->
+    <VBox styleClass="sidebar" spacing="2">
+        <padding><Insets top="24" bottom="16"/></padding>
+
+        <Label text="🎓 LMS Admin" style="-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:white;-fx-padding:0 20 12 20;"/>
+        <Separator style="-fx-background-color:#334;"/>
+
+        <Label text="MAIN MENU" styleClass="sidebar-title"/>
+        <Button fx:id="btnDashboard" text="📊  Dashboard"    styleClass="sidebar-btn" onAction="#showDashboard"/>
+        <Button fx:id="btnUsers"     text="👥  Manage Users" styleClass="sidebar-btn" onAction="#showManageUsers"/>
+        <Button fx:id="btnCourses"   text="📚  Courses"      styleClass="sidebar-btn" onAction="#showManageCourses"/>
+        <Button fx:id="btnNotices"   text="📢  Notices"      styleClass="sidebar-btn" onAction="#showNotices"/>
+        <Button fx:id="btnTimetable" text="🗓  Timetables"   styleClass="sidebar-btn" onAction="#showTimetable"/>
+        <Button fx:id="btnMedical"   text="🏥  Medicals"     styleClass="sidebar-btn" onAction="#showAllMedicals"/>
+        <Region VBox.vgrow="ALWAYS"/>
+        <Separator style="-fx-background-color:#334;"/>
+
+        <VBox spacing="2">
+            <padding><Insets top="16" right="20" bottom="0" left="20"/></padding>
+            <Label fx:id="labelUserName" styleClass="sidebar-user"/>
+            <Label text="Administrator"  styleClass="sidebar-role"/>
+        </VBox>
+
+        <Button text="Logout" styleClass="btn-logout" onAction="#handleLogout">
+            <VBox.margin><Insets top="8" right="10" bottom="0" left="10"/></VBox.margin>
+        </Button>
+    </VBox>
+
+    <!-- MAIN CONTENT -->
+    <StackPane HBox.hgrow="ALWAYS" styleClass="content-area">
+        <ScrollPane fitToWidth="true" style="-fx-background-color:transparent;-fx-background:transparent;">
+            <VBox fx:id="contentPane" spacing="20"/>
+        </ScrollPane>
+    </StackPane>
+
+</HBox>
